@@ -1,0 +1,19 @@
+{
+  "name": "gulp-rainbow",
+  "version": "0.0.0",
+  "description": "Gulp workflow for front-end development at GEx",
+  "main": "lib/index.js",
+  "dependencies": {
+    "browser-sync": "^2.5.3",
+    "fs-extra": "^0.18.0",
+    "glob": "^5.0.3",
+    "gulp-bower": "0.0.10",
+    "gulp-filter": "^2.0.2",
+    "gulp-jade": "^1.0.0",
+    "gulp-less": "^3.0.2",
+    "gulp-util": "^3.0.4",
+    "js-yaml": "^3.2.7",
+    "main-bower-files": "^2.6.2",
+    "rimraf": "^2.3.2"
+  }
+}
