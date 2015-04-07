@@ -103,7 +103,7 @@ This means you can work on several projects using the same installation.
 **views/** &mdash; all `*.jade` files will be compiled to the `generated/` directory
 
 
-> Note that any file or directory starting with a underscore will be skipped for all `.{jade,less}` files, i.e. `_mixins.jade`
+> Any file or directory starting with an underscore will be skipped for all `.{jade,less}` files, i.e. `_mixins.jade`
 
 ## Integrations
 
@@ -120,11 +120,11 @@ For `*.less` files we've made the `bower_components/` directory available for `@
 In your `*.jade` files you can inline any dependency using `<link>` or `<script>` tags respectively.
 
 ```jade
-link(rel='stylesheet', href='')
-script(src='')
+link(rel='stylesheet', href='vendor/semantic-ui/dist/semantic.css')
+script(src='vendor/jquery/dist/jquery.min.js')
 ```
 
-> Note that all bower dependencies are available under the `vendor/` directory after `install`
+> All bower dependencies are available under the `vendor/` after you ran the `vendor` task
 >
 > If you're using sub-directories please consider using a `<base>` tag for avoiding `../` paths
 
@@ -197,4 +197,34 @@ Just comment out the elements or sections you really need include.
 
 **Add-ons for Semantic-UI**
 
-TODO
+In order to reuse custom components we've defined a simple convention for that:
+
+Each module within `bower_components/` directory prefixed as `rainbow-ui-` will be merged with the `semantic-ui` sources.
+
+These modules must have the following directory structure:
+
+```bash
+$ tree src
+# src/
+#   ├── _site
+#   ├── definitions
+#   ├── themes
+```
+
+Of course it must have a `bower.json` manifest, which should expose their sources in the `main` property:
+
+```json
+{
+  "name": "rainbow-ui-osom_component",
+  "version": "1.0.0",
+  "main": [
+    "src/**/*.*"
+  ]
+}
+```
+
+> This structure is the same as `semantic-ui` source, so you can override almost everything inside
+
+The last thing is doing `bower install rainbow-ui-osom_component --save` and that's it.
+
+Restart your gulp (rainbow) tasks and enjoy!
