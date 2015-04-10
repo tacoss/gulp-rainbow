@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    base(href='/')
+    link(rel='stylesheet' href='css/main.css')
+    link(rel='icon' type='image/png' href='img/rainbow_icon.png')
+    title Untitled
+  body
+    header.ui.vertical.segment
+      .ui.page.grid
+        .column
+          h1 Header
+
+    nav.ui.vertical.segment
+      .ui.page.grid
+        .ui.secondary.menu
+          a.item(href='#')
+            i.home.icon
+            | Home
+          a.item(href='#') Link
+
+    main.ui.vertically.padded.page.grid
+      section.column
+        h1 Page title
+        p Main content
+
+    footer.ui.vertical.segment
+      .ui.page.grid
+        .column
+          a.ui.button(href='https://github.com/gextech/gulp-rainbow')
+            i.github.icon
+            | Powered by gulp-rainbow
