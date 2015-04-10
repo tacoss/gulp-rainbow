@@ -12,6 +12,7 @@ var die = process.exit.bind(process);
 var cwd = process.cwd(),
     src_dir = path.join(cwd, 'src'),
     gulpfile = path.join(cwd, 'gulpfile.js'),
+    bowerfile = path.join(cwd, 'bower.json'),
     node_modules = path.join(cwd, 'node_modules'),
     gulp_symlink = path.join(node_modules, 'gulp'),
     rainbow_symlink = path.join(node_modules, 'gulp-rainbow');
@@ -81,38 +82,44 @@ function rebase(name) {
 }
 
 function create() {
-  execute('Copying default sources', function() {
-    fs.copySync(path.join(__dirname, 'stub'), cwd);
-  });
-
-  execute('Creating default bower.json', function() {
-    fs.outputJsonSync(path.join(cwd, 'bower.json'), {
-      name: path.basename(cwd),
-      version: '0.0.0',
-      dependencies: {
-        'semantic-ui': 'git@github.com:gextech/Semantic-UI.git'
-      },
-      overrides: {
-        'semantic-ui': {
-          main: [
-            'dist/themes/default/**'
-          ]
-        }
-      }
+  if (!is_dir(src_dir)) {
+    execute('Copying default sources', function() {
+      fs.copySync(path.join(__dirname, 'stub'), cwd);
     });
-  });
+  }
 
-  execute('Creating default gulpfile.js', function() {
-    var code = [
-      "require('gulp-rainbow')({",
-      "  tasks: ['clean', 'install', 'vendor', 'images', 'styles', 'views', 'server'],",
-      "  gulp: require('gulp'),",
-      "  cwd: '" + path.relative(path.join(cwd, 'src'), src_dir) + "'",
-      "});"
-    ];
+  if (!is_file(bowerfile)) {
+    execute('Creating default bower.json', function() {
+      fs.outputJsonSync(path.join(cwd, 'bower.json'), {
+        name: path.basename(cwd),
+        version: '0.0.0',
+        dependencies: {
+          'semantic-ui': 'git@github.com:gextech/Semantic-UI.git'
+        },
+        overrides: {
+          'semantic-ui': {
+            main: [
+              'dist/themes/default/**'
+            ]
+          }
+        }
+      });
+    });
+  }
 
-    fs.outputFileSync(gulpfile, code.join('\n') + '\n');
-  });
+  if (!is_file(gulpfile)) {
+    execute('Creating default gulpfile.js', function() {
+      var code = [
+        "require('gulp-rainbow')({",
+        "  tasks: ['clean', 'install', 'vendor', 'images', 'styles', 'views', 'server'],",
+        "  gulp: require('gulp'),",
+        "  cwd: '" + path.relative(path.join(cwd, 'src'), src_dir) + "'",
+        "});"
+      ].join('\n') + '\n';
+
+      fs.outputFileSync(gulpfile, code);
+    });
+  }
 
   write('\n');
 }
@@ -168,7 +175,7 @@ switch (action) {
   case 'init':
     var base = options._[1];
 
-    if (!(is_file(gulpfile) && is_dir(src_dir))) {
+    if (!(is_dir(src_dir) && is_file(gulpfile) && is_file(bowerfile))) {
       create();
     }
 
