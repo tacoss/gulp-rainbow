@@ -90,7 +90,7 @@ function create() {
       name: path.basename(cwd),
       version: '0.0.0',
       dependencies: {
-        'semantic-ui': 'git@github.com:gextech/Semantic-UI.git#master'
+        'semantic-ui': 'git@github.com:gextech/Semantic-UI.git'
       },
       overrides: {
         'semantic-ui': {
@@ -100,6 +100,18 @@ function create() {
         }
       }
     });
+  });
+
+  execute('Creating default gulpfile.js', function() {
+    var code = [
+      "require('gulp-rainbow')({",
+      "  tasks: ['clean', 'install', 'vendor', 'images', 'styles', 'views', 'server'],",
+      "  gulp: require('gulp'),",
+      "  cwd: '" + path.relative(path.join(cwd, 'src'), src_dir) + "'",
+      "});"
+    ];
+
+    fs.outputFileSync(gulpfile, code.join('\n') + '\n');
   });
 
   write('\n');
