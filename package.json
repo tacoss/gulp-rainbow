@@ -1,6 +1,6 @@
 {
   "name": "gulp-rainbow",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Gulp workflow for front-end development at GEx",
   "main": "lib/index.js",
   "bin": {
