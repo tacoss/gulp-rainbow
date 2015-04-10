@@ -4,6 +4,7 @@
 
 var fs = require('fs-extra'),
     path = require('path'),
+    options = require('yargs').argv,
     child_process = require('child_process');
 
 var die = process.exit.bind(process);
@@ -14,6 +15,10 @@ var cwd = process.cwd(),
     node_modules = path.join(cwd, 'node_modules'),
     gulp_symlink = path.join(node_modules, 'gulp'),
     rainbow_symlink = path.join(node_modules, 'gulp-rainbow');
+
+if (typeof options.cwd === 'string') {
+  src_dir = path.resolve(src_dir, options.cwd);
+}
 
 function read(file) {
   return fs.readFileSync(file).toString();
@@ -68,7 +73,7 @@ function rebase(name) {
 
   if (!is_dir(base_dir)) {
     execute('Adding sources to "' + name + '" base', function() {
-      fs.copySync(path.join(__dirname, 'stub/src/default'), path.join(src_dir, name));
+      fs.copySync(path.join(__dirname, 'stub/src/default'), base_dir);
     });
 
     write('\n');
@@ -128,11 +133,14 @@ function spawn(base) {
     }
   }
 
-  var args = process.argv.slice(3);
+  var args = [];
 
   if (base) {
-    args = args.slice(1);
     args.push('--base', base);
+  }
+
+  if (options.open) {
+    args.push('--open');
   }
 
   child_process.spawn('gulp', ['rainbow'].concat(args), {
@@ -142,11 +150,11 @@ function spawn(base) {
 
 banner();
 
-var action = process.argv.slice(2)[0];
+var action = options._[0];
 
 switch (action) {
   case 'init':
-    var base = process.argv.slice(3)[0];
+    var base = options._[1];
 
     if (!(is_file(gulpfile) && is_dir(src_dir))) {
       create();
