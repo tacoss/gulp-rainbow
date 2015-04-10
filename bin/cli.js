@@ -94,7 +94,7 @@ function create() {
         name: path.basename(cwd),
         version: '0.0.0',
         dependencies: {
-          'semantic-ui': 'git@github.com:gextech/Semantic-UI.git'
+          'semantic-ui': 'git@github.com:gextech/Semantic-UI.git#master'
         },
         overrides: {
           'semantic-ui': {
