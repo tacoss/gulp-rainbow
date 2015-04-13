@@ -111,7 +111,6 @@ function create() {
     execute('Creating default gulpfile.js', function() {
       var code = [
         "require('gulp-rainbow')({",
-        "  tasks: ['clean', 'install', 'vendor', 'fonts', 'images', 'styles', 'views', 'server'],",
         "  gulp: require('gulp'),",
         "  cwd: '" + path.relative(path.join(cwd, 'src'), src_dir) + "'",
         "});"
