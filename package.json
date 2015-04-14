@@ -19,6 +19,7 @@
     "gulp-jade": "^1.0.0",
     "gulp-less": "^3.0.2",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.3",
     "gulp-sequence": "^0.3.2",
     "gulp-util": "^3.0.4",
     "js-yaml": "^3.2.7",

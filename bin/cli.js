@@ -114,7 +114,7 @@ function create() {
       var code = [
         "require('gulp-rainbow')({",
         "  gulp: require('gulp')",
-        "});"
+        '});'
       ].join('\n') + '\n';
 
       var base_dir = path.relative(path.join(cwd, 'src'), src_dir);
