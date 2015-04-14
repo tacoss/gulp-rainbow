@@ -84,7 +84,7 @@ function rebase(name) {
 function create() {
   if (!is_dir(src_dir)) {
     execute('Copying default sources', function() {
-      fs.copySync(path.join(__dirname, 'stub'), cwd);
+      fs.copySync(path.join(__dirname, 'stub/src'), src_dir);
     });
   }
 
@@ -99,6 +99,8 @@ function create() {
         overrides: {
           'semantic-ui': {
             main: [
+              'dist/semantic.js',
+              'dist/semantic.css',
               'dist/themes/default/**'
             ]
           }
@@ -111,10 +113,15 @@ function create() {
     execute('Creating default gulpfile.js', function() {
       var code = [
         "require('gulp-rainbow')({",
-        "  gulp: require('gulp'),",
-        "  cwd: '" + path.relative(path.join(cwd, 'src'), src_dir) + "'",
+        "  gulp: require('gulp')",
         "});"
       ].join('\n') + '\n';
+
+      var base_dir = path.relative(path.join(cwd, 'src'), src_dir);
+
+      if (base_dir) {
+        code = code.replace("require('gulp')", "require('gulp'),\n  cwd: '" + base_dir + "'");
+      }
 
       fs.outputFileSync(gulpfile, code);
     });
