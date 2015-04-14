@@ -2,6 +2,7 @@
   "name": "gulp-rainbow",
   "version": "0.0.5",
   "description": "Gulp workflow for front-end development at GEx",
+  "repository": "https://github.com/gextech/gulp-rainbow",
   "main": "lib/index.js",
   "bin": {
     "rainbow": "./bin/cli.js"

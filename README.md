@@ -15,7 +15,7 @@ require('gulp-rainbow')({
 The available tasks are:
 
 - **clean** &mdash; remove all files from the `generated/` directory
-- **images** &mdash; copy all images from the `images/` directory
+- **copy** &mdash; copy all assets (images & fonts) from their respective directories
 - **install** &mdash; run `bower install` for you
 - **server** &mdash; starts a `browser-sync` instance
 - **styles** &mdash; compile `less` sources from the `styles/` directory
@@ -27,13 +27,6 @@ To execute all the defined tasks in sequence just type `gulp rainbow`
 > Note that all these tasks are automatically prefixed, i.e. `rainbow:clean`
 
 ## Options
-
-**tasks** (array|required) &mdash; rainbown tasks to run
-
-```js
-// tasks will run in sequence as you defined
-tasks: ['clean', 'install', 'vendor', 'images', 'styles', 'views', 'server']
-```
 
 **files** (object|optional) &mdash; used for `gulp-rename` as follows:
 
