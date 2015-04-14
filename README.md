@@ -46,21 +46,20 @@ build: process.argv.indexOf('build') > -1
 
 > Values for `src` must be relative to the current `base` directory
 
-Also, the `views` task can use an optional hash:
+Also, some tasks can use `before` and `after` hooks:
 
 ```js
-// given these values
+// common gulp plugins
+var rename = require('gulp-rename');
+
+// after-hook for generated views
 views: {
-  rename: {
-    extname: '.jsp'
+  after: function(task) {
+    return task.pipe(rename(function(file) {
+      file.extname = '.jsp';
+    }));
   }
 }
-
-// `views` will invoke `gulp-rename`
-rename(function(file) {
-  file.extname = '.jsp';
-  // etc.
-})
 ```
 
 **gulp** (object|required) &mdash; the `gulp` instance to hook-up
