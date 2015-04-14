@@ -160,7 +160,9 @@ function spawn(base) {
 
   var args = [];
 
-  if (base) {
+  if (options.base === false) {
+    args.push('--no-base');
+  } else if (base) {
     args.push('--base', base);
   }
 
