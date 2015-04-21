@@ -14,11 +14,23 @@ require('gulp-rainbow')({
 
 ## Options
 
+**locals** (object|optional) &mdash; used in jade templates, i.e. formating, mocks, etc.
+
+```javascript
+// good!
+locals: {
+  chance: require('chance').Chance()
+}
+
+// view.jade
+h3.user.name=chance.name()
+```
+
 **server** (boolean|optional) &mdash; if `false`, the server task will be disabled
 
 **proxy** (string|optional) &mdash; used instead of `server` to setup a proxy
 
-```js
+```javascript
 // custom proxy
 proxy: 'localhost:8080'
 ```
@@ -27,7 +39,7 @@ proxy: 'localhost:8080'
 
 ```js
 // using argvs
-build: process.argv.indexOf('build') > -1
+build: process.argv.indexOf('--build') > -1
 ```
 
 **files** (object|optional) &mdash; used for setup all the source directories
@@ -35,6 +47,7 @@ build: process.argv.indexOf('build') > -1
 ```js
 // rainbow defaults
 {
+  env: 'env.yml',
   dest: 'generated',
   views: { src: 'views', dest: '' },
   fonts: { src: 'fonts', dest: 'fonts' },
@@ -54,8 +67,8 @@ var rename = require('gulp-rename');
 
 // after-hook for generated views
 views: {
-  after: function(task) {
-    return task.pipe(rename(function(file) {
+  after: function(stream) {
+    return stream.pipe(rename(function(file) {
       file.extname = '.jsp';
     }));
   }
@@ -168,7 +181,18 @@ For solving this issues we hack the `semantic-ui` sources on every `gulp` sessio
 
 [bin/stub/src/default/env.yml](https://github.com/gextech/gulp-rainbow/blob/master/bin/stub/src/default/env.yml)
 
-> Just comment out the elements or sections you really need include
+Just comment out the elements or sections you really need include.
+
+Further customizations can be achieved by using `*.{variables,overrides}` files inside a directory called `_site` within your current working directory:
+
+```less
+# src/base/_site/collections/menu.variables
+@secondaryMargin: 0;
+```
+
+All of these [definitions](https://github.com/gextech/Semantic-UI/tree/master/src/definitions) are extracted from [themes](https://github.com/gextech/Semantic-UI/tree/master/src/themes/default), `_site` is a theme.
+
+Using this approach you can redefine almost everything found in semantic-ui.
 
 **Add-ons for Semantic-UI**
 
@@ -222,9 +246,22 @@ $ cd rainbow-test
 $ rainbow init
 ```
 
-If you're using a previous rainbow installation with the CLI please remove all `node_modules` before.
+If you're using a previous rainbow installation with the CLI please remove the `node_modules` directory before.
 
 > Make sure you're specifying the `--cwd foo/bar` as defined in the `gulpfile.js` (if present)
+
+### package.json
+
+```json
+"optionalDependencies": {
+   "gulp": "^3.8.11",
+   "gulp-rainbow": "^0.0.*"
+ }
+```
+
+Now type `npm install --no-optional` to get only your dependencies.
+
+On CI environments you must use `npm install` as usual.
 
 ## Issues?
 

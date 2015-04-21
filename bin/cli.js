@@ -136,6 +136,7 @@ function usage() {
   if (is_file(gulpfile) && is_dir(src_dir)) {
     write('  - Type "rainbow init" to start the development server\n');
     write('  - Type "rainbow init sitename" to work on a new whole site\n');
+    write('  - Type "rainbow build [sitename]" to generate all the sources\n');
   } else {
     write('  - Type "rainbow init" if you want to start a new project here\n');
   }
@@ -169,6 +170,7 @@ var action = options._[0];
 
 switch (action) {
   case 'init':
+  case 'build':
     var args = [],
         base = options._[1];
 
@@ -184,7 +186,9 @@ switch (action) {
       rebase(base);
     }
 
-    if (options.open) {
+    if (action === 'build') {
+      args.push('--build');
+    } else if (options.open) {
       args.push('--open');
     }
 
