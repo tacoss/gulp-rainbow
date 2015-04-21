@@ -141,7 +141,7 @@ function usage() {
   }
 }
 
-function spawn(base) {
+function spawn(args) {
   if (!(is_dir(gulp_symlink) && is_dir(rainbow_symlink))) {
     var src = path.resolve(__dirname, '../node_modules');
 
@@ -158,19 +158,7 @@ function spawn(base) {
     }
   }
 
-  var args = [];
-
-  if (options.base === false) {
-    args.push('--no-base');
-  } else if (base) {
-    args.push('--base', base);
-  }
-
-  if (options.open) {
-    args.push('--open');
-  }
-
-  child_process.spawn('gulp', ['rainbow'].concat(args), {
+  child_process.spawn('gulp', ['rainbow'].concat(args || []), {
     stdio: 'inherit'
   });
 }
@@ -181,17 +169,26 @@ var action = options._[0];
 
 switch (action) {
   case 'init':
-    var base = options._[1];
+    var args = [],
+        base = options._[1];
 
     if (!(is_dir(src_dir) && is_file(gulpfile) && is_file(bowerfile))) {
       create();
     }
 
-    if (base) {
+    if (options.base === false) {
+      args.push('--no-base');
+    } else if (base) {
+      args.push('--base', base);
+
       rebase(base);
     }
 
-    spawn(base);
+    if (options.open) {
+      args.push('--open');
+    }
+
+    spawn(args);
   break;
 
   default:
