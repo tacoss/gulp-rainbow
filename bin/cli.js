@@ -178,10 +178,14 @@ switch (action) {
       create();
     }
 
+    if (options.port) {
+      args.push('--port=' + options.port);
+    }
+
     if (options.base === false) {
       args.push('--no-base');
     } else if (base) {
-      args.push('--base', base);
+      args.push('--base=' + base);
 
       rebase(base);
     }
@@ -190,6 +194,10 @@ switch (action) {
       args.push('--build');
     } else if (options.open) {
       args.push('--open');
+    }
+
+    if (options.debug) {
+      args.push('--debug');
     }
 
     spawn(args);
