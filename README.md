@@ -135,15 +135,15 @@ This means you can work on several projects using the same installation.
 
 **env.yml** &mdash; settings used to configure our `semantic-ui` dependencies among other things (see the integrations below)
 
-**images/** &mdash; all `*.{jpg,jpeg,png,svg}` files will be copied to the `generated/img/` directory
+**images/** &mdash; all `**/*.{jpg,jpeg,png,svg}` files will be copied to the `generated/img/` directory
 
-**scripts/** &mdash; all `*.{coffee,litcoffee}` files will be compiled to the `generated/js/` directory
+**scripts/** &mdash; any `**/index.{coffee,litcoffee}` file will be bundled with `webpack` to the `generated/js/` directory using its dirname for the bundle name, i.e. `foo/index.coffee` will be `generated/js/foo.js`.
 
-**styles/** &mdash; all `*.less` files will be compiled to the `generated/css/` directory
+**styles/** &mdash; all `**/*.less` files will be compiled to the `generated/css/` directory
 
-**views/** &mdash; all `*.jade` files will be compiled to the `generated/` directory
+**views/** &mdash; all `**/*.jade` files will be compiled to the `generated/` directory
 
-**fonts/** &mdash; all `*.{ttf,otf,eot,woff,woff2,svg}` files will be compiled to the `generated/fonts/` directory
+**fonts/** &mdash; all `**/*.{ttf,otf,eot,woff,woff2,svg}` files will be compiled to the `generated/fonts/` directory
 
 
 > Any file or directory starting with an underscore will be skipped, i.e. `_mixins.jade`, `styles/_mixins/hidden.less`, etc.
