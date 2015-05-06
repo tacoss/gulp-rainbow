@@ -14,6 +14,19 @@ require('gulp-rainbow')({
 
 ## Options
 
+**bundle** (boolean|object|optional) &mdash; determines if `less` and `coffee-script` should bundle its assets using indexes, i.e. `scripts/foo/index.coffee` would produce `generated/js/foo.js` and `styles/bar/index.less` as `generated/css/bar.css`, etc.
+
+```javascript
+// default values (if enabled)
+bundle: {
+  compact: true
+}
+```
+
+If `compact` is **false** `foo/index.in` would generate `foo/index.out` directly.
+
+> This feature is disabled by default.
+
 **locals** (object|optional) &mdash; used in jade templates, i.e. formating, mocks, etc.
 
 ```javascript
