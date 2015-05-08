@@ -25,6 +25,7 @@
     "gulp-watch": "^4.2.4",
     "js-yaml": "^3.2.7",
     "main-bower-files": "^2.6.2",
+    "marked": "^0.3.3",
     "rimraf": "^2.3.2",
     "webpack": "^1.8.11",
     "yargs": "^3.7.0"
