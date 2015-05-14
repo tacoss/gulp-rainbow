@@ -66,6 +66,7 @@ build: process.argv.indexOf('--build') > -1
   fonts: { src: 'fonts', dest: 'fonts' },
   styles: { src: 'styles', dest: 'css' },
   images: { src: 'images', dest: 'img' },
+  sprites: { src: 'sprites', dest: 'img' },
   scripts: { src: 'scripts', dest: 'js' }
 }
 ```
@@ -108,7 +109,7 @@ cwd: 'web/bases'
 
 ## Tasks
 
-Available tasks: `clean`, `install`, `vendor`, `fonts`, `images`, `styles`, `scripts`, `views` and `server`
+Available tasks: `clean`, `install`, `vendor`, `fonts`, `images`, `sprites`, `styles`, `scripts`, `views` and `server`
 
 Some tasks are automatically setup if their `src` directory exists, i.e. `scripts` task will be registered only if the `src/default/scripts` directory is present.
 
@@ -128,6 +129,7 @@ $ tree src
 #   ├── fonts
 #   ├── images
 #   ├── scripts
+#   ├── sprites
 #   ├── styles
 #   └── views
 ```
@@ -147,6 +149,9 @@ This means you can work on several projects using the same installation.
 ## File sources
 
 **env.yml** &mdash; settings used to configure our `semantic-ui` dependencies among other things (see the integrations below)
+
+**sprites/** &mdash; all `**/*.png` files will be copied to the `generated/img/` directory
+
 
 **images/** &mdash; all `**/*.{jpg,jpeg,png,svg}` files will be copied to the `generated/img/` directory
 
