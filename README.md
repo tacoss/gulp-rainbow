@@ -6,21 +6,23 @@
 1. Install xcode from AppStore
 
 2. brew http://brew.sh/
-`bash
+```bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-`
+```
 3. Install git
-'bash
+``bash
 brew install git
-'
+```
 4. nvm curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
-`bash
+```bash
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
-`
+npm install v0.10.36
+npm alias default 0.10.36
+```
 5. gulp
-`bash
+```bash
 npm install -g gulp
-`
+```
 
 It leverages on `bower`, `jade`, `less`, `coffee-script` and `semantic-ui` for build our production assets.
 
