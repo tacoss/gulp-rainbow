@@ -1,5 +1,21 @@
 **Rainbow** are our `gulp` tasks for front-end development.
 
+
+## Installation of dependecies
+
+1. brew http://brew.sh/
+`bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+`
+2. nvm curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
+`bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
+`
+3. gulp
+`bash
+npm install -g gulp
+`
+
 It leverages on `bower`, `jade`, `less`, `coffee-script` and `semantic-ui` for build our production assets.
 
 ## Dependencies
