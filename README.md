@@ -10,7 +10,7 @@
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 3. Install git
-``bash
+```bash
 brew install git
 ```
 4. nvm curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
