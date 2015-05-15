@@ -16,8 +16,8 @@ brew install git
 4. nvm curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
 ```bash
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
-npm install v0.10.36
-npm alias default 0.10.36
+nvm install v0.10.36
+nvm alias default 0.10.36
 ```
 5. gulp
 ```bash
