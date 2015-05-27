@@ -200,6 +200,10 @@ switch (action) {
       args.push('--debug');
     }
 
+    if (options.clean) {
+      args.push('--clean');
+    }
+
     spawn(args);
   break;
 
