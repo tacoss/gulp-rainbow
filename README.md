@@ -1,30 +1,48 @@
 **Rainbow** are our `gulp` tasks for front-end development.
 
-
-## Installation of dependecies
-
-1. Install xcode from AppStore
-
-2. brew http://brew.sh/
-```bash
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
-3. Install git
-```bash
-brew install git
-```
-4. nvm curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
-```bash
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
-nvm install v0.10.36
-nvm alias default 0.10.36
-```
-5. gulp
-```bash
-npm install -g gulp
-```
-
 It leverages on `bower`, `jade`, `less`, `coffee-script` and `semantic-ui` for build our production assets.
+
+Of course you MUST have installed Git and NodeJS (through NVM) before.
+
+## Installation of dependencies
+
+### Mac OSX
+
+1. Install Xcode from the AppStore
+
+2. Install brew http://brew.sh/
+
+   ```bash
+   ruby -e "$(curl -fsSL    https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   ```
+
+3. Install git
+
+   ```bash
+   brew install git
+   ```
+
+4. Install NVM
+
+
+   ```bash
+   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
+   nvm install v0.10.38
+   nvm alias default 0.10.38
+   ```
+
+5. Install gulp
+
+   ```bash
+   npm install -g gulp
+   ```
+
+### Linux
+
+Make sure you're installing git and nvm only.
+
+Then proceed with the 4-5 steps.
+
 
 ## Dependencies
 
@@ -75,6 +93,12 @@ Otherwise the `rainbow` task will be registered.
 ```
 
 > Also the current `${base}` is accessible through and cannot be overridden.
+
+**filter** (string|array|optional) &mdash; used to filter-out all subtasks sources.
+
+```javascript
+filter: ["!**/private/**"]
+```
 
 **bundle** (boolean|object|optional) &mdash; determines if `less` and `coffee-script` should bundle its assets using indexes, i.e. `scripts/foo/index.coffee` would produce `generated/js/foo.js` and `styles/bar/index.less` as `generated/css/bar.css`, etc.
 
