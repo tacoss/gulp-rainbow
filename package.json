@@ -11,6 +11,7 @@
     "ansi-rainbow": "0.0.8",
     "browser-sync": "^2.7.5",
     "coffee-loader": "^0.7.2",
+    "deepmerge": "^0.2.10",
     "fs-extra": "^0.18.4",
     "glob": "^5.0.10",
     "gulp": "^3.8.11",
