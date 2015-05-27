@@ -36,7 +36,45 @@ require('gulp-rainbow')({
 });
 ```
 
+## Methods
+
+Rainbow exposes the `server` subtask for external reuse.
+
+```javascript
+gulp.task('server', rainbow.server('public_dir'));
+```
+
 ## Options
+
+**gulp** (object|required) &mdash; the `gulp` instance to hook-up
+
+```js
+// or pass your `gulp` instance
+gulp: require('gulp')
+```
+
+**prefix** (string|optional) &mdash; if present, it will be used to prefix all the sub-tasks, then returns the `gulp-sequence` callback for external registration.
+
+```javascript
+gulp.task('my-custom-task', rainbow({ prefix: 'custom' }));
+```
+
+Otherwise the `rainbow` task will be registered.
+
+**params** (object|optional) &mdash; used to expand values within the `files` object.
+
+```javascript
+{
+  params: {
+    foo: 'bar',
+  },
+  files: {
+    dest: 'build/${foo}/public' // will produce build/bar/public
+  }
+}
+```
+
+> Also the current `${base}` is accessible through and cannot be overridden.
 
 **bundle** (boolean|object|optional) &mdash; determines if `less` and `coffee-script` should bundle its assets using indexes, i.e. `scripts/foo/index.coffee` would produce `generated/js/foo.js` and `styles/bar/index.less` as `generated/css/bar.css`, etc.
 
@@ -84,9 +122,13 @@ build: process.argv.indexOf('--build') > -1
 ```js
 // rainbow defaults
 {
+  vendor: 'vendor',
+  filter: [],
+  bower: '',
   env: 'env.yml',
+  data: 'data',
   dest: 'generated',
-  views: { src: 'views', dest: '' },
+  views: { src: 'views', dest: '', ext: '.html' },
   fonts: { src: 'fonts', dest: 'fonts' },
   styles: { src: 'styles', dest: 'css' },
   images: { src: 'images', dest: 'img' },
@@ -94,6 +136,8 @@ build: process.argv.indexOf('--build') > -1
   scripts: { src: 'scripts', dest: 'js' }
 }
 ```
+
+The file-extension for `views` can be overridden through the `ext` property.
 
 > Values for `src` must be relative to the current `base` directory
 
@@ -113,12 +157,7 @@ views: {
 }
 ```
 
-**gulp** (object|required) &mdash; the `gulp` instance to hook-up
-
-```js
-// or pass your `gulp` instance
-gulp: require('gulp')
-```
+**data** (object|optional) &mdash; default data-samples for the views, it will be merged with `locals.data` if present.
 
 **base** (boolean|optional) &mdash; if `false` will disable the `base` feature
 
