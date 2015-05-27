@@ -150,7 +150,6 @@ build: process.argv.indexOf('--build') > -1
   filter: [],
   bower: '',
   env: 'env.yml',
-  data: 'data',
   dest: 'generated',
   views: { src: 'views', dest: '', ext: '.html' },
   fonts: { src: 'fonts', dest: 'fonts' },
