@@ -182,6 +182,8 @@ views: {
 
 **data** (object|optional) &mdash; default data-samples for the views, it will be merged with `locals.data` if present.
 
+**skip** (array|optional) &mdash; list of tasks to skip regardless of their directories exists or not.
+
 **base** (boolean|optional) &mdash; if `false` will disable the `base` feature
 
 > You can use `--no-base` on the CLI for achieving the same
