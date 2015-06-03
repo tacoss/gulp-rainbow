@@ -109,7 +109,7 @@ function create() {
     });
   }
 
-  if (!is_file(gulpfile)) {
+  if (!(is_file(gulpfile) || is_dir(gulpfile))) {
     execute('Creating default gulpfile.js', function() {
       var code = [
         "require('gulp-rainbow')({",
