@@ -190,6 +190,10 @@ switch (action) {
       rebase(base);
     }
 
+    if (options.check === false) {
+      args.push('--no-check');
+    }
+
     if (action === 'build') {
       args.push('--build');
     } else if (options.open) {
