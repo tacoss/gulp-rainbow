@@ -1,0 +1,70 @@
+// {{comment}}
+
+//Default values
+@iconWidth: 1.23em;
+@iconHeight: 0.9em;
+
+
+@font-face {
+	font-family: "{{fontName}}";
+	src:
+		url("{{fontPath}}/{{fontName}}.eot");
+	src:
+		url("{{fontPath}}/{{fontName}}.eot?#iefix") format('embedded-opentype'),
+		url("{{fontPath}}/{{fontName}}.woff2") format('woff'),
+		url("{{fontPath}}/{{fontName}}.woff") format('woff'),
+		url("{{fontPath}}/{{fontName}}.ttf") format('truetype'),
+		url("{{fontPath}}/{{fontName}}.svg#{{fontName}}") format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icon {
+	display: inline-block;
+	vertical-align: middle;
+
+	// width: @iconWidth;
+	// height: @iconHeight;
+	// margin: 0em 0.25rem 0em 0em;
+
+	line-height: 1;
+	margin: -0.1em 0;
+
+	font-family: '{{fontName}}';
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	text-align: center;
+
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-transform: none;
+
+	backface-visibility: hidden;
+}
+
+.icon(@content: '') {
+	&:before {
+		content: @content;
+	}
+}
+
+{% for icon in icons -%}
+
+// {{icon.name}}
+@icon-{{icon.name}}-char: "\{{icon.code}}";
+.icon-{{icon.name}}-alias(@aliases, @_i: length(@aliases)) when (@_i > 0) {
+	@alias: extract(@aliases, @_i);
+	.icon.@{alias}:before:extend(.icon.{{icon.name}}:before) {}
+  .icon-{{icon.name}}-alias(@aliases, @_i - 1);
+}
+
+.icon.{{icon.name}} {
+	.icon(@icon-{{icon.name}}-char);
+}
+
+{% endfor %}
+
+@import (optional) '../base/_iconAliases';
