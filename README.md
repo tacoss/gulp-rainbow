@@ -1,4 +1,4 @@
-**Rainbow** are our `gulp` tasks for front-end development.
+**Rainbow** is a collection of `gulp` tasks for front-end development.
 
 It leverages on `bower`, `jade`, `less`, `coffee-script` and `semantic-ui` for build our production assets.
 
@@ -12,9 +12,9 @@ Of course you MUST have installed Git and NodeJS (through NVM) before.
 
 2. Install brew http://brew.sh/
 
-   ```bash
-   ruby -e "$(curl -fsSL    https://raw.githubusercontent.com/Homebrew/install/master/install)"
-   ```
+    ```bash
+    ruby -e "$(curl -fsSL    https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ```
 
 3. Install git
 
@@ -23,19 +23,26 @@ Of course you MUST have installed Git and NodeJS (through NVM) before.
    ```
 
 4. Install NVM
+    _Via homebrew:_
+    ```bash
+    brew install nvm
+    ```
+    _or via curl:_
+    ```bash
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+    ```
+5. Install node through nvm (rainbow works with **node v0.10.x** and **v0.12.x**)
+    
+    ```bash
+    nvm install v0.12
+    nvm alias default v0.12
+    ```
+    
+6. Install gulp
 
-
-   ```bash
-   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
-   nvm install v0.10.38
-   nvm alias default 0.10.38
-   ```
-
-5. Install gulp
-
-   ```bash
-   npm install -g gulp
-   ```
+    ```bash
+    npm install -g gulp
+    ```
 
 ### Linux
 
@@ -151,6 +158,7 @@ build: process.argv.indexOf('--build') > -1
   bower: '',
   env: 'env.yml',
   dest: 'generated',
+  icons: { src: 'icons' },
   views: { src: 'views', dest: '', ext: '.html' },
   fonts: { src: 'fonts', dest: 'fonts' },
   styles: { src: 'styles', dest: 'css' },
@@ -197,7 +205,7 @@ cwd: 'web/bases'
 
 ## Tasks
 
-Available tasks: `clean`, `install`, `vendor`, `fonts`, `images`, `sprites`, `styles`, `scripts`, `views` and `server`
+Available tasks: `clean`,  `install`,  `vendor`, `fonts`, `images`, `icons`, `sprites`, `styles`, `scripts`, `views` and `server`
 
 Some tasks are automatically setup if their `src` directory exists, i.e. `scripts` task will be registered only if the `src/default/scripts` directory is present.
 
@@ -215,6 +223,7 @@ $ tree src
 #  default/         <- required for custom bases
 #   ├── env.yml
 #   ├── fonts
+#   ├── icons
 #   ├── images
 #   ├── scripts
 #   ├── sprites
@@ -240,6 +249,7 @@ This means you can work on several projects using the same installation.
 
 **sprites/** &mdash; all `**/*.png` files will be copied to the `generated/img/` directory
 
+**icons/** &mdash; all `**/*.svg` files icons will be converted to a single font, available as `icon.{svg,ttf,woff}` in the fonts output directory, along with a handy `iconCatalog.html`.  Also, a LESS stylesheet will be created in `styles/_generated/icons.less`.
 
 **images/** &mdash; all `**/*.{jpg,jpeg,png,svg}` files will be copied to the `generated/img/` directory
 
