@@ -17,7 +17,7 @@
 			font-style: normal;
 		}
 
-		.icon {
+		.{{className}} {
 			display: inline-block;
 			vertical-align: middle;
 
@@ -43,13 +43,13 @@
 			backface-visibility: hidden;
 		}
 
-		.icon:before {
+		.{{className}}:before {
 			content: '';
 		}
 
 		{% for icon in icons -%}
 		/* {{icon.name}} */
-		.icon.{{icon.name}}:before {
+		.{{className}}.{{icon.name}}:before {
 			content: "\{{icon.code}}";
 		}
 		{% endfor %}
@@ -97,7 +97,7 @@
 		{% for icon in icons -%}
 		<div class="icon-box">
 			<div class="codepoint">0x{{icon.code}}</div>
-			<i class="icon {{icon.name}}"></i>
+			<i class="{{className}} {{icon.name}}"></i>
 			<div class="name">{{icon.name}}</div>
 		</div>
 		{% endfor %}

@@ -2,7 +2,10 @@
   "name": "gulp-rainbow",
   "version": "0.1.7",
   "description": "Gulp workflow for front-end development at GEx",
-  "repository": "https://github.com/gextech/gulp-rainbow",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gextech/gulp-rainbow"
+  },
   "main": "lib/index.js",
   "bin": {
     "rainbow": "./bin/cli.js"
@@ -45,5 +48,5 @@
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
-  }
+    }
 }
