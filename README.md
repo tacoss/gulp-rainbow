@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/gulp-rainbow.png?compact=true)](https://nodei.co/npm/gulp-rainbow/)
+
 **Rainbow** is a collection of `gulp` tasks for front-end development.
 
 It leverages on `bower`, `jade`, `less`, `coffee-script` and `semantic-ui` for build our production assets.
