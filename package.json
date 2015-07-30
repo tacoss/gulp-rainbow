@@ -1,6 +1,6 @@
 {
   "name": "gulp-rainbow",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Gulp workflow for front-end development at GEx",
   "repository": {
     "type": "git",
