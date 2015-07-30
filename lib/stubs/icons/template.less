@@ -19,7 +19,7 @@
 	font-style: normal;
 }
 
-.icon {
+.{{className}} {
 	display: inline-block;
 	vertical-align: middle;
 
@@ -45,7 +45,7 @@
 	backface-visibility: hidden;
 }
 
-.icon(@content: '') {
+.{{className}}(@content: '') {
 	&:before {
 		content: @content;
 	}
@@ -54,15 +54,15 @@
 {% for icon in icons -%}
 
 // {{icon.name}}
-@icon-{{icon.name}}-char: "\{{icon.code}}";
-.icon-{{icon.name}}-alias(@aliases, @_i: length(@aliases)) when (@_i > 0) {
+@{{className}}-{{icon.name}}-char: "\{{icon.code}}";
+.{{className}}-{{icon.name}}-alias(@aliases, @_i: length(@aliases)) when (@_i > 0) {
 	@alias: extract(@aliases, @_i);
-	.icon.@{alias}:before:extend(.icon.{{icon.name}}:before) {}
-  .icon-{{icon.name}}-alias(@aliases, @_i - 1);
+	.{{className}}.@{alias}:before:extend(.{{className}}.{{icon.name}}:before) {}
+  .{{className}}-{{icon.name}}-alias(@aliases, @_i - 1);
 }
 
-.icon.{{icon.name}} {
-	.icon(@icon-{{icon.name}}-char);
+.{{className}}.{{icon.name}} {
+	.{{className}}(@{{className}}-{{icon.name}}-char);
 }
 
 {% endfor %}

@@ -18,9 +18,9 @@ Of course you MUST have installed Git and NodeJS (through NVM) before.
 
 3. Install git
 
-   ```bash
-   brew install git
-   ```
+    ```bash
+    brew install git
+    ```
 
 4. Install NVM
     _Via homebrew:_
@@ -32,12 +32,12 @@ Of course you MUST have installed Git and NodeJS (through NVM) before.
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
     ```
 5. Install node through nvm (rainbow works with **node v0.10.x** and **v0.12.x**)
-    
+
     ```bash
     nvm install v0.12
     nvm alias default v0.12
     ```
-    
+
 6. Install gulp
 
     ```bash
@@ -187,6 +187,42 @@ views: {
   }
 }
 ```
+
+**icons** (object|optional) &mdash; options passed to the `icons` task.
+Available options:
+
+* `fontName`: (string, defaults to `icons`) the name used to load the icon's font-family in CSS.
+* `startUnicode`: (hex, defaults to `0xF000`) the starting charcode for all generated glyphs.
+* `normalize`: (boolean, defaults to `true`) whether the glyphs' sizes should be normalized to have the same height (don't disable this unless you know what you're doing).
+* `className`: (string, defaults to `icon`) the LESS/CSS classname that will be used along each icon's classname.
+
+    > e.g. if you set it to `foo-icon`, then a `burger` icon would be (in jade) `i.foo-icon.burger`
+
+* `templates`: (object, see defaults below) the configuration for all generated templates.  Each template's config can have the following properties:
+> _Warning, setting this option in rainbow will override all of the default templates_
+
+  * `template`: (required) the path to a swig template, receiving the following variables:
+    * `fontPath`, `fontName`, `className` directly from the options above.
+    * `comments`: A small disclaimer to let developers know that the output file should not be edited.
+    * `icons`: An array of icon glyphs, each one being an object with a `name` and `code` (the glyph's hex code).
+  * `outputName`: (required) the name of the rendered template
+  * `outputDir`: (optional) the path to place the rendered template
+  * `fontPath`: (optional) the path to the font files, relative to the outputName (or to the server's root)
+
+  The default templates configuration is as follows:
+  ```js
+  templates: iconOptions.templates || {
+      less: {
+        template: 'lib/stubs/icons/template.less', //in rainbow's dir
+        outputName: 'icons.less'
+      },
+      htmlCatalog: {
+        template: 'lib/stubs/icons/templateCatalog.html', //in rainbow's dir
+        outputName: 'iconCatalog.html',
+        fontPath: 'generated/fonts' //(or dest + fonts.dest)
+      }
+    }
+  ```
 
 **data** (object|optional) &mdash; default data-samples for the views, it will be merged with `locals.data` if present.
 
